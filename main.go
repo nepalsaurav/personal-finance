@@ -1,13 +1,11 @@
 package main
 
 import (
-	"log"
-	"os"
-
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/layout"
+	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/nepalsaurav/personal-finance/ui"
 )
@@ -15,16 +13,9 @@ import (
 func main() {
 	app := app.New()
 
-	imgByte, err := os.ReadFile("assets/logo.png")
-	if err != nil {
-		log.Fatal(err)
-	}
+	app.Settings().SetTheme(&customTheme{Theme: theme.DefaultTheme()})
 
-	iconRes := fyne.NewStaticResource("app-icon", imgByte)
-
-	app.SetIcon(iconRes)
-
-	window := app.NewWindow("Hledger GUI")
+	window := app.NewWindow("Personal Finance")
 	window.Resize(fyne.NewSize(1000, 800))
 
 	// create menu bar
